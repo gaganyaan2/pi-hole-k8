@@ -15,6 +15,19 @@ spec:
         app: pi-hole
         env: prod
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: "kubernetes.io/arch"
+                operator: "In"
+                values:
+                - arm64
+      tolerations:
+      - key: "key"
+        operator: "Exists"
+        effect: "NoSchedule"
       containers:
       - name: pi-hole
         image: pihole/pihole
@@ -65,7 +78,7 @@ spec:
     app: pi-hole
   type: NodePort
   externalIPs:
-    - 192.168.0.183
+    - 192.168.0.186
   ports:
   - name: dns-tcp
     port: 53
