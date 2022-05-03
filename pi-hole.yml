@@ -78,7 +78,7 @@ spec:
     app: pi-hole
   type: NodePort
   externalIPs:
-    - 192.168.0.186
+    - 192.168.0.186 #Run DNS on this IP port 53
   ports:
   - name: dns-tcp
     port: 53
